@@ -54,9 +54,9 @@ testString = "What a wonderful TeSt I got"
 getLog :: Writer a -> String
 getLog = snd
 
-result = getLog (process testString)
+-- result = getLog (process testString)
 
--- partial functions https://bartoszmilewski.com/2014/12/23/kleisli-categories/
+-- Kleisli Categories (aka Mondada) https://bartoszmilewski.com/2014/12/23/kleisli-categories/
 type ResultWithCheck a = (Bool, a)
 
 check :: a -> ResultWithCheck a
@@ -81,9 +81,30 @@ comb f_outter f_inner = \x ->
 
 -- result = comb safeReciprocal safeRoot (-1)
 
+--- partial function
+
 mult :: (Num a) => a -> a -> a -> a
 mult x y z = x * y * z
 
 mult3 = mult 3
 
 -- result = mult3 3 3
+
+-- Simple Algebraic Data Types https://bartoszmilewski.com/2015/01/13/simple-algebraic-data-types/
+
+data Shape = Circle Float | Rectangle Float Float | Square Float
+
+area :: Shape -> Float 
+area (Circle r) = pi * r^2
+area (Rectangle x y) = x * y
+area (Square x) = x * x
+
+c = Circle 23
+-- result = area c
+
+circ :: Shape -> Float 
+circ (Rectangle a b) = a * b
+circ (Circle r) = 2 * pi * r
+circ (Square a) = a * a
+
+result = circ c
