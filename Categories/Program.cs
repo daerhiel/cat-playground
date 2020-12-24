@@ -4,9 +4,8 @@ using System.Threading;
 
 namespace Categories
 {
-    class Program
+    class PartOneChapterOneTwo
     {
-        public int Test { get; init; }
         public static int AddOne(int n) => n + 1;
         public static int Double(int n) => n * 2;
 
@@ -44,7 +43,10 @@ namespace Categories
                     return cache[x] = f(x);
             };
         }
+    }
 
+    class Program
+    {
         static void Main(string[] args)
         {
             // Console.WriteLine("You're ....");
